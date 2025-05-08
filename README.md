@@ -16,6 +16,7 @@ A Laravel-based application for tracking holidays and time off.
 - Composer
 - Node.js and NPM
 - MySQL or PostgreSQL
+- [Lando](https://docs.lando.dev/getting-started/installation.html) for local development
 
 ## Installation
 
@@ -28,11 +29,44 @@ A Laravel-based application for tracking holidays and time off.
 7. Run `php artisan db:seed`
 8. Run `npm run dev`
 
-## Development
+## Development with Lando
 
-- `php artisan serve` - Start the development server
-- `npm run dev` - Start Vite development server
-- `php artisan test` - Run tests
+1. Start Lando:
+   ```bash
+   lando start
+   ```
+
+2. Install dependencies:
+   ```bash
+   lando composer install
+   lando npm install
+   ```
+
+3. Generate application key:
+   ```bash
+   lando artisan key:generate
+   ```
+
+4. Run migrations and seeders:
+   ```bash
+   lando artisan migrate
+   lando artisan db:seed
+   ```
+
+5. Build assets:
+   ```bash
+   lando npm run dev
+   ```
+
+The application will be available at `https://holiday-tracker.lndo.site`
+
+## Development Commands
+
+- `lando artisan serve` - Start the development server
+- `lando npm run dev` - Start Vite development server
+- `lando artisan test` - Run tests
+- `lando composer update` - Update PHP dependencies
+- `lando npm update` - Update Node.js dependencies
 
 ## License
 
