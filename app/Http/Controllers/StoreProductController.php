@@ -12,10 +12,10 @@ class StoreProductController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function __invoke(StoreProductRequest $request)
+    public function __invoke(StoreProductRequest $request): JsonResponse
     {
         $product = Product::create($request->validated());
 

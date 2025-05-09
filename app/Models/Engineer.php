@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use PHPUnit\Framework\Attributes\Ticket;
 
 class Engineer extends Model
 {
     protected $fillable = [
         'name',
-        'email',      
+        'email',
         'team'
     ];
 
