@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('holidays', function (Blueprint $table) {
-            $table->id();
+            $table->id('id')->primary();
             $table->foreignId('engineer_id')->constrained()->cascadeOnDelete();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('status')->default('pending'); // pending, approved, rejected
-            $table->string('type'); // annual, sick, unpaid, etc.
             $table->text('notes')->nullable();
+            $table->string('calendar_event_id')->nullable(); // Google Calendar Event ID
             $table->timestamps();
         });
     }

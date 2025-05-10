@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('engineers', function (Blueprint $table) {
-            $table->id();
+            $table->id('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('team');
+            $table->json('products');
+            $table->string('calendar_id')->nullable(); // Google Calendar ID
             $table->timestamps();
         });
     }

@@ -5,14 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Concerns\HasIds;
 use PHPUnit\Framework\Attributes\Ticket;
 
 class Engineer extends Model
 {
+
+    use HasIds;
+
     protected $fillable = [
         'name',
         'email',
-        'team'
+        'team',
+        'products',
+        'calendar_id'
+    ];
+
+    protected $casts = [
+        'products' => 'array',
     ];
 
     public function products(): BelongsToMany
@@ -25,19 +35,18 @@ class Engineer extends Model
         return $this->hasMany(Holiday::class);
     }
 
+    /**
+     * Returns all tickets that are assigned to this engineer.
+     *
+     * The relation is determined by the assignee_id column in the tickets table.
+     *
+     * @return HasMany
+     */
     public function assignedTickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'assignee_id');
     }
 
-    /**
-     * Temporary tickets assigned to this engineer.
-     *
-     * This is a tickets assigned to another engineer, but this engineer is
-     * covering for them while they are on holiday.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function temporaryTickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'temporary_assignee_id');
