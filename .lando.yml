@@ -10,8 +10,6 @@ services:
   appserver:
     type: php:8.2
     ssl: true
-    cert: /Users/leopoldomedeiros/.lando/certs/appserver.jobs2.crt
-    key: /Users/leopoldomedeiros/.lando/certs/appserver.jobs2.key
 
   node:
     type: node:18

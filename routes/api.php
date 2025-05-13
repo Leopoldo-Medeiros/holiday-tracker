@@ -36,3 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/products', StoreProductController::class);
     Route::post('/engineers/{engineer}/products', AssignProductController::class);
 });
+
+// Test routes for Google Calendar integration
+Route::prefix('test/calendar')->group(function () {
+    Route::post('/engineers', [App\Http\Controllers\GoogleCalendarTestController::class, 'createTestEngineer']);
+    Route::get('/engineers', [App\Http\Controllers\GoogleCalendarTestController::class, 'getEngineersWithHolidays']);
+    Route::post('/sync/{engineerId}', [App\Http\Controllers\GoogleCalendarTestController::class, 'syncHolidays']);
+    Route::get('/progress/{progressKey}', [App\Http\Controllers\GoogleCalendarTestController::class, 'getSyncProgress']);
+});
